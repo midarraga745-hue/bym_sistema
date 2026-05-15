@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BYM — Arquitectura del Sistema</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0d0d;
+      color: #e8e8f0;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    .diagrama {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* CAPAS */
+    .capa {
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 0;
+    }
+    .capa-cliente  { background: #2d2060; border: 1.5px solid #4a38a0; }
+    .capa-frontend { background: #0f3d2e; border: 1.5px solid #2a7a55; }
+    .capa-backend  { background: #3d1a0e; border: 1.5px solid #8a3a20; }
+    .capa-datos    { background: #0e2450; border: 1.5px solid #2a5090; }
+
+    .capa-titulo {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .capa-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .modulos {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .modulo {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 12px 18px;
+      text-align: center;
+      min-width: 140px;
+      flex: 1;
+    }
+    .modulo-nombre {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .modulo-desc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .middleware {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 12px;
+    }
+
+    /* FLECHA CONECTORA */
+    .conector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      gap: 2px;
+    }
+    .conector-linea {
+      width: 2px;
+      height: 24px;
+      background: rgba(255,255,255,0.2);
+    }
+    .conector-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      font-family: 'DM Sans', monospace;
+      letter-spacing: 0.05em;
+    }
+    .conector-flecha {
+      color: rgba(255,255,255,0.3);
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* LEYENDA */
+    .leyenda {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .ley-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .ley-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏪 BYM — Arquitectura del Sistema</h1>
+  <p class="subtitle">Sistema de Inventario y Ventas · Diagrama de capas</p>
+
+  <div class="diagrama">
+
+    <!-- CAPA CLIENTE -->
+    <div class="capa capa-cliente">
+      <div class="capa-titulo">Capa de presentación — Cliente</div>
+      <div class="capa-sub">Dispositivos desde los que acceden los usuarios al sistema</div>
+      <div class="modulos">
+        <div class="modulo">
+          <div class="modulo-nombre">💻 Computador</div>
+          <div class="modulo-desc">Chrome / Firefox</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📱 Tableta</div>
+          <div class="modulo-desc">Safari / Edge</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📲 Celular</div>
+          <div class="modulo-desc">Navegador móvil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONECTOR 1 -->
+    <div class="conector">
+      <div class="conector-linea"></div>
+      <div class="conector-label">HTTP / HTTPS</div>
+      <div class="conector-flecha">↓</div>
+    </div>
+
+    <!-- CAPA FRONTEND -->
+    <div class="capa capa-frontend">
+      <div class="capa-titulo">Capa de presentación — Frontend</div>
+      <div class="capa-sub">Tecnologías: HTML5 · CSS3 · JavaScript (ES6+)</div>
+      <div class="modulos">
+        <div class="modulo">
+          <div class="modulo-nombre">🛒 Módulo ventas</div>
+          <div class="modulo-desc">Registro y carrito</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📦 Módulo inventario</div>
+          <div class="modulo-desc">Stock y alertas</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📊 Módulo reportes</div>
+          <div class="modulo-desc">Gráficas y exports</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">👤 Módulo usuarios</div>
+          <div class="modulo-desc">Login y roles</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONECTOR 2 -->
+    <div class="conector">
+      <div class="conector-linea"></div>
+      <div class="conector-label">REST API / JSON</div>
+      <div class="conector-flecha">↓</div>
+    </div>
+
+    <!-- CAPA BACKEND -->
+    <div class="capa capa-backend">
+      <div class="capa-titulo">Capa de lógica de negocio — Backend</div>
+      <div class="capa-sub">Tecnologías: Node.js · Express.js · JWT (autenticación)</div>
+      <div class="modulos">
+        <div class="modulo">
+          <div class="modulo-nombre">🔐 Auth Service</div>
+          <div class="modulo-desc">JWT · control acceso</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📦 Product Service</div>
+          <div class="modulo-desc">CRUD productos</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">💵 Sales Service</div>
+          <div class="modulo-desc">Ventas y pagos</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📈 Report Service</div>
+          <div class="modulo-desc">Estadísticas</div>
+        </div>
+      </div>
+      <div class="middleware">
+        Middleware: validación de datos · manejo de errores · logs · CORS
+      </div>
+    </div>
+
+    <!-- CONECTOR 3 -->
+    <div class="conector">
+      <div class="conector-linea"></div>
+      <div class="conector-label">SQL / ORM (Sequelize)</div>
+      <div class="conector-flecha">↓</div>
+    </div>
+
+    <!-- CAPA BASE DE DATOS -->
+    <div class="capa capa-datos">
+      <div class="capa-titulo">Capa de datos — Base de datos</div>
+      <div class="capa-sub">Motor: MySQL 8 o PostgreSQL 15</div>
+      <div class="modulos">
+        <div class="modulo">
+          <div class="modulo-nombre">👤 USUARIO</div>
+          <div class="modulo-desc">roles · sesión</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📦 PRODUCTO</div>
+          <div class="modulo-desc">catálogo · precio</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">🛒 VENTA</div>
+          <div class="modulo-desc">transacciones</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📊 INVENTARIO</div>
+          <div class="modulo-desc">stock · alertas</div>
+        </div>
+        <div class="modulo">
+          <div class="modulo-nombre">📈 REPORTE</div>
+          <div class="modulo-desc">estadísticas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LEYENDA -->
+  <div class="leyenda">
+    <div class="ley-item"><div class="ley-dot" style="background:#2d2060"></div> Cliente</div>
+    <div class="ley-item"><div class="ley-dot" style="background:#0f3d2e"></div> Frontend</div>
+    <div class="ley-item"><div class="ley-dot" style="background:#3d1a0e"></div> Backend</div>
+    <div class="ley-item"><div class="ley-dot" style="background:#0e2450"></div> Base de datos</div>
+    <div class="ley-item"><div class="ley-dot" style="background:#333"></div> Componente interno</div>
+  </div>
+
+</body>
+</html>
